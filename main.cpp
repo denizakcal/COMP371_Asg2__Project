@@ -558,13 +558,13 @@ int main()
 
         //glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, (void*)0);
 
-        glBindVertexArray(cubeVAO);
+        /*glBindVertexArray(cubeVAO);
 
         glDrawArrays(GL_TRIANGLES, 0, 12*3);
 
         glBindVertexArray(gridVAO);
 
-        glDrawArrays(GL_LINES, 0, 2*2*100+2*4);
+        glDrawArrays(GL_LINES, 0, 2*2*100+2*4);*/
 
         glBindVertexArray(axeVAO);
 
