@@ -27,7 +27,7 @@ struct IndividualTransformations {
     glm::vec3 scale;
 };
 
-glm::mat4 netTransformation(IndividualTransformations transformations)
+glm::mat4 individualTransformationsToMat4(IndividualTransformations transformations)
 {
     //start with an identity matrix
     glm::mat4 result = glm::mat4(1.0f);
@@ -63,9 +63,9 @@ glm::mat4 netTransformation(IndividualTransformations transformations)
   //return individualTransformations.rotation * individualTransformations.translation * individualTransformations.scale;
 }*/
 
-void DrawCube(GLuint transformLoc, IndividualTransformations individualTransformations, GLuint cubeVAO) {
+void DrawCube(GLuint transformLoc, glm::mat4 compoundedTransformations, GLuint cubeVAO) {
 
-    glm::mat4 model_matrix = /*startingPosition * */ netTransformation(individualTransformations); // It is assumed that the startingPosition is the origin
+    glm::mat4 model_matrix = /*startingPosition * */ compoundedTransformations; // It is assumed that the startingPosition is the origin
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(model_matrix));
 	glBindVertexArray(cubeVAO);
     glDrawArrays(GL_TRIANGLES, 0, 12*3);
@@ -575,15 +575,19 @@ int main()
 
         //Head
 
-        //Neck
-
         //Torso
         IndividualTransformations torsoTransform;
         torsoTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
         torsoTransform.translation = glm::vec3(0.1f, 0.0f, 0.0f);
         torsoTransform.rot_x = 0.0f;
-        DrawCube(/*glm::mat4(1),*/ transformLoc, torsoTransform, cubeVAO);
-        //translat = glm::translate(model_matrix, glm::vec3(2.5,0,2.5));
+        DrawCube(/*glm::mat4(1),*/ transformLoc, model_matrix * individualTransformationsToMat4(torsoTransform), cubeVAO);
+
+        //Neck
+        IndividualTransformations neckTransform;
+        neckTransform.scale = glm::vec3(0.5f, 0.5f, 0.5f);
+        neckTransform.translation = glm::vec3(-1.0f, 0.0f, 0.0f);
+        neckTransform.rot_x = 45.0f;
+        DrawCube(/*glm::mat4(1),*/ transformLoc, model_matrix * individualTransformationsToMat4(neckTransform) * individualTransformationsToMat4(torsoTransform), cubeVAO);
 
         //Right Front Lower Arm
 
