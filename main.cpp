@@ -512,38 +512,6 @@ int main()
     GLuint transformLoc = glGetUniformLocation(shaderProgram, "model_matrix");
     GLint colorLoc = glGetUniformLocation(shaderProgram, "color");
 
-    //HORSE
-
-
-    //Head
-
-    //Neck
-
-    //Torso
-  	IndividualTransformations torsoTransform;
-  	torsoTransform.scale = glm::vec3(2.0f, 1.0f, 1.0f);
-  	torsoTransform.translation = glm::vec3(1);
-  	torsoTransform.rot_x = 90.0f;
-  	DrawCube(/*glm::mat4(1),*/ transformLoc, torsoTransform, cubeVAO);
-  	//translat = glm::translate(model_matrix, glm::vec3(2.5,0,2.5));
-
-    //Right Front Lower Arm
-
-    //Right Front Upper Arm
-
-    //Left Front Lower Arm
-
-    //Left Front Upper Arm
-
-    //Right Back Lower Leg
-
-    //Right Back Upper Leg
-
-    //Left Back Lower Leg
-
-    //Left Back Upper Leg
-
-
     double xpos, ypos;
     glfwGetCursorPos(window, &xpos, &ypos);
 
@@ -603,6 +571,35 @@ int main()
         glDrawArrays(GL_LINE_STRIP, 0, 6);
 
         //Cube Transformations
+        //HORSE
+
+        //Head
+
+        //Neck
+
+        //Torso
+        IndividualTransformations torsoTransform;
+        torsoTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+        torsoTransform.translation = glm::vec3(0.1f, 0.0f, 0.0f);
+        torsoTransform.rot_x = 0.0f;
+        DrawCube(/*glm::mat4(1),*/ transformLoc, torsoTransform, cubeVAO);
+        //translat = glm::translate(model_matrix, glm::vec3(2.5,0,2.5));
+
+        //Right Front Lower Arm
+
+        //Right Front Upper Arm
+
+        //Left Front Lower Arm
+
+        //Left Front Upper Arm
+
+        //Right Back Lower Leg
+
+        //Right Back Upper Leg
+
+        //Left Back Lower Leg
+
+        //Left Back Upper Leg
 
         //Lower Parts
 
