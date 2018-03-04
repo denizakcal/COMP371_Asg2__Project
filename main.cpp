@@ -730,19 +730,3 @@ int main()
     glfwTerminate();
     return 0;
 }
-
-/*enum class TransformationMatrix {
-
-  MODEL_MATRIX,
-  VIEW_MATRIX,
-  PROJECTION_MATRIX
-}
-
-DrawCube(glm::mat4 startingPosition, GLuint modelViewOrProjectionLoc, IndividualTransformations individualTransformations, GLuint cubeVAO, TransformationMatrix choice) {
-
-  switch(choice) {
-    case TransformationMatrix::MODEL_MATRIX: {
-
-    }
-  }
-}*/
