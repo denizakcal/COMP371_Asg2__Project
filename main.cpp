@@ -702,26 +702,6 @@ int main()
       	rightLowerLegTransform.parent = &rightLowerLegPivot;	//pivot is the parent
       	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(rightLowerLegTransform), cubeVAO);
 
-
-
-
-
-      	// BAD/OLD STUFF:
-        //Lower Parts
-
-        //Front Left Lower Leg
-        translat = glm::translate(model_matrix, glm::vec3(2.5,0,2.5));
-
-        scal = glm::scale(model_matrix, glm::vec3(0.25, 1, 0.25));
-
-        model_matrix = translat * scal;
-
-        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(model_matrix));
-
-        glBindVertexArray(cubeVAO);
-
-        glDrawArrays(GL_TRIANGLES, 0, 12*3);
-
         // Swap the screen buffers
         glfwSwapBuffers(window);
     }
