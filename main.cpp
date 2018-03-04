@@ -32,16 +32,16 @@ glm::mat4 individualTransformationsToMat4(IndividualTransformations transformati
     //start with an identity matrix
     glm::mat4 result = glm::mat4(1.0f);
 
-    //apply the scale first
-    result = glm::scale(result, transformations.scale);
+    //then finally the translation
+    result = glm::translate(result, transformations.translation);
 
     //then the rotation
     result = glm::rotate(result, transformations.rot_x, glm::vec3(1.0f, 0.0f, 0.0f));
     result = glm::rotate(result, transformations.rot_y, glm::vec3(0.0f, 1.0f, 0.0f));
     result = glm::rotate(result, transformations.rot_z, glm::vec3(0.0f, 0.0f, 1.0f));
 
-    //then finally the translation
-    result = glm::translate(result, transformations.translation);
+    //apply the scale first
+    result = glm::scale(result, transformations.scale);
 
     return result;
 }
@@ -67,6 +67,7 @@ void DrawCube(GLuint transformLoc, glm::mat4 compoundedTransformations, GLuint c
 
     glm::mat4 model_matrix = /*startingPosition * */ compoundedTransformations; // It is assumed that the startingPosition is the origin
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(model_matrix));
+
 	glBindVertexArray(cubeVAO);
     glDrawArrays(GL_TRIANGLES, 0, 12*3);
 }
@@ -510,7 +511,6 @@ int main()
     GLuint projectionLoc = glGetUniformLocation(shaderProgram, "projection_matrix");
     GLuint viewMatrixLoc = glGetUniformLocation(shaderProgram, "view_matrix");
     GLuint transformLoc = glGetUniformLocation(shaderProgram, "model_matrix");
-    GLint colorLoc = glGetUniformLocation(shaderProgram, "color");
 
     double xpos, ypos;
     glfwGetCursorPos(window, &xpos, &ypos);
@@ -577,16 +577,16 @@ int main()
 
         //Torso
         IndividualTransformations torsoTransform;
-        torsoTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+        torsoTransform.scale = glm::vec3(2.0f, 1.0f, 1.0f);
         torsoTransform.translation = glm::vec3(0.1f, 0.0f, 0.0f);
         torsoTransform.rot_x = 0.0f;
         DrawCube(/*glm::mat4(1),*/ transformLoc, model_matrix * individualTransformationsToMat4(torsoTransform), cubeVAO);
 
-        //Neck
+                //Neck
         IndividualTransformations neckTransform;
         neckTransform.scale = glm::vec3(0.5f, 0.5f, 0.5f);
-        neckTransform.translation = glm::vec3(-1.0f, 0.0f, 0.0f);
-        neckTransform.rot_x = 45.0f;
+        neckTransform.translation = glm::vec3(-2.5f, -1.5f, 0.0f);
+        neckTransform.rot_z = glm::radians(-270.0f);
         DrawCube(/*glm::mat4(1),*/ transformLoc, model_matrix * individualTransformationsToMat4(neckTransform) * individualTransformationsToMat4(torsoTransform), cubeVAO);
 
         //Right Front Lower Arm
