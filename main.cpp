@@ -722,53 +722,6 @@ int main()
 
         glDrawArrays(GL_TRIANGLES, 0, 12*3);
 
-
-        //Front Right Lower Leg
-        /*translat = glm::translate(model_matrix, glm::vec3(4,0,2));
-
-        scal = glm::scale(model_matrix, glm::vec3(0.25, 1, 0.25));
-
-        model_matrix = translat * scal;
-
-
-        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(model_matrix));
-
-        glBindVertexArray(cubeVAO);
-
-        glDrawArrays(GL_TRIANGLES, 0, 12*3);
-        glBindVertexArray(0);
-
-        //Back Left Lower Leg
-
-        translat = glm::translate(model_matrix, glm::vec3(2,0,4));
-
-        scal = glm::scale(model_matrix, glm::vec3(0.25, 1, 0.25));
-
-        model_matrix = translat * scal;
-
-
-        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(model_matrix));
-
-        glBindVertexArray(cubeVAO);
-
-        glDrawArrays(GL_TRIANGLES, 0, 12*3);
-
-        //Back Right Lower Leg
-
-        translat = glm::translate(model_matrix, glm::vec3(4,0,4));
-
-        scal = glm::scale(model_matrix, glm::vec3(0.25, 1, 0.25));
-
-        model_matrix = translat * scal;
-
-
-        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(model_matrix));
-
-        glBindVertexArray(cubeVAO);
-
-        glDrawArrays(GL_TRIANGLES, 0, 12*3); */
-
-
         // Swap the screen buffers
         glfwSwapBuffers(window);
     }
