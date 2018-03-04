@@ -614,22 +614,99 @@ int main()
       	neckTransform.parent = &neckPivot;	//pivot is the parent
         DrawCube(transformLoc, world_mat * individualTransformationsToMat4(neckTransform), cubeVAO);
 
-        //Right Front Lower Arm
+      	// Left upper arm (from horse's point of view)
+        IndividualTransformations leftUpperArmPivot;
+        leftUpperArmPivot.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
+        leftUpperArmPivot.rot_z = glm::radians(45.0f);
+      	leftUpperArmPivot.parent = &torsoPivot;
 
-        //Right Front Upper Arm
+      	IndividualTransformations leftUpperArmTransform;
+				leftUpperArmTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+      	leftUpperArmTransform.parent = &leftUpperArmPivot;	//pivot is the parent
+      	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(leftUpperArmTransform), cubeVAO);
 
-        //Left Front Lower Arm
+        // Left lower arm (from horse's point of view)
+        IndividualTransformations leftLowerArmPivot;
+        leftLowerArmPivot.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
+        leftLowerArmPivot.rot_z = glm::radians(45.0f);
+      	leftLowerArmPivot.parent = &torsoPivot;
 
-        //Left Front Upper Arm
+      	IndividualTransformations leftLowerArmTransform;
+				leftLowerArmTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+      	leftLowerArmTransform.parent = &leftUpperArmPivot;	//pivot is the parent
+      	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(leftLowerArmTransform), cubeVAO);
 
-        //Right Back Lower Leg
+      	// Right upper arm (from the horse's point of view)
+        IndividualTransformations rightUpperArmPivot;
+        rightUpperArmPivot.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
+        rightUpperArmPivot.rot_z = glm::radians(45.0f);
+      	rightUpperArmPivot.parent = &torsoPivot;
 
-        //Right Back Upper Leg
+      	IndividualTransformations rightUpperArmTransform;
+        rightUpperArmTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+      	rightUpperArmTransform.parent = &rightUpperArmPivot;	//pivot is the parent
+      	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(rightUpperArmTransform), cubeVAO);
 
-        //Left Back Lower Leg
+      	// Right lower arm (from the horse's point of view)
+        IndividualTransformations rightLowerArmPivot;
+        rightLowerArmPivot.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
+        rightLowerArmPivot.rot_z = glm::radians(45.0f);
+      	rightLowerArmPivot.parent = &rightUpperArmPivot;
 
-        //Left Back Upper Leg
+      	IndividualTransformations rightLowerArmTransform;
+        rightLowerArmTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+      	rightLowerArmTransform.parent = &rightLowerArmPivot;	//pivot is the parent
+      	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(rightLowerArmTransform), cubeVAO);
 
+        // Left upper leg (from the horse's point of view)
+        IndividualTransformations leftUpperLegPivot;
+        leftUpperLegPivot.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
+        leftUpperLegPivot.rot_z = glm::radians(45.0f);
+      	leftUpperLegPivot.parent = &torsoPivot;
+
+      	IndividualTransformations leftUpperLegTransform;
+        leftUpperLegTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+      	leftUpperLegTransform.parent = &leftUpperLegPivot;	//pivot is the parent
+      	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(leftUpperLegTransform), cubeVAO);
+
+        // Left lower leg (from the horse's point of view)
+        IndividualTransformations leftLowerLegPivot;
+        leftLowerLegPivot.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
+        leftLowerLegPivot.rot_z = glm::radians(45.0f);
+      	leftLowerLegPivot.parent = &leftUpperLegPivot;
+
+      	IndividualTransformations leftLowerLegTransform;
+        leftLowerLegTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+      	leftLowerLegTransform.parent = &leftLowerLegPivot;	//pivot is the parent
+      	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(leftLowerLegTransform), cubeVAO);
+
+        // Right upper leg (from the horse's point of view)
+        IndividualTransformations rightUpperLegPivot;
+        rightUpperLegPivot.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
+        rightUpperLegPivot.rot_z = glm::radians(45.0f);
+      	rightUpperLegPivot.parent = &torsoPivot;
+
+      	IndividualTransformations rightUpperLegTransform;
+        rightUpperLegTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+      	rightUpperLegTransform.parent = &rightUpperLegPivot;	//pivot is the parent
+      	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(rightUpperLegTransform), cubeVAO);
+
+        // Right lower leg (from the horse's point of view)
+        IndividualTransformations rightLowerLegPivot;
+        rightLowerLegPivot.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
+        rightLowerLegPivot.rot_z = glm::radians(45.0f);
+      	rightLowerLegPivot.parent = &rightUpperLegPivot;
+
+      	IndividualTransformations rightLowerLegTransform;
+        rightLowerLegTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+      	rightLowerLegTransform.parent = &rightLowerLegPivot;	//pivot is the parent
+      	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(rightLowerLegTransform), cubeVAO);
+
+
+
+
+
+      	// BAD/OLD STUFF:
         //Lower Parts
 
         //Front Left Lower Leg
