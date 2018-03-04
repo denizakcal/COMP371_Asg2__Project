@@ -577,7 +577,7 @@ int main()
 
         //Torso
         IndividualTransformations torsoTransform;
-        torsoTransform.scale = glm::vec3(2.0f, 1.0f, 1.0f);
+        torsoTransform.scale = glm::vec3(5.0f, 1.0f, 1.0f);
         torsoTransform.translation = glm::vec3(0.1f, 0.0f, 0.0f);
         torsoTransform.rot_x = 0.0f;
         DrawCube(/*glm::mat4(1),*/ transformLoc, model_matrix * individualTransformationsToMat4(torsoTransform), cubeVAO);
