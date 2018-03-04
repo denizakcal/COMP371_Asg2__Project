@@ -25,6 +25,16 @@ struct IndividualTransformations {
     GLfloat rot_z;
     glm::vec3 translation;
     glm::vec3 scale;
+
+  	IndividualTransformations* parent;
+
+  	public: IndividualTransformations()
+    {
+      rot_x = rot_y = rot_z = 0.0f;
+      translation = glm::vec3(0.0f);
+      scale = glm::vec3(1.0f, 1.0f, 1.0f);
+      parent = NULL;
+    }
 };
 
 glm::mat4 individualTransformationsToMat4(IndividualTransformations transformations)
@@ -42,6 +52,9 @@ glm::mat4 individualTransformationsToMat4(IndividualTransformations transformati
 
     //apply the scale first
     result = glm::scale(result, transformations.scale);
+
+  	if (transformations.parent != NULL)
+      result = individualTransformationsToMat4(*(transformations.parent)) * result;
 
     return result;
 }
@@ -570,25 +583,36 @@ int main()
 
         glDrawArrays(GL_LINE_STRIP, 0, 6);
 
+      	//bit of a rename so it makes more sense
+      	glm::mat4 world_mat = model_matrix;
+
         //Cube Transformations
         //HORSE
 
         //Head
 
         //Torso
+      	IndividualTransformations torsoPivot;
+      	//torsoPivot.scale = glm::vec3(torsoScaleX * 1.0f, 1.0f, 1.0f);		//don't change the scale of the pivot
+        torsoPivot.translation = glm::vec3(0.0f, 0.0f, 0.0f);
+        torsoPivot.rot_x = 0.0f;
+
         float torsoScaleX = 4.0f;
         IndividualTransformations torsoTransform;
-        torsoTransform.scale = glm::vec3(torsoScaleX * 1.0f, 1.0f, 1.0f);
-        torsoTransform.translation = glm::vec3(0.0f, 0.0f, 0.0f);
-        torsoTransform.rot_x = 0.0f;
-        DrawCube(/*glm::mat4(1),*/ transformLoc, model_matrix * individualTransformationsToMat4(torsoTransform), cubeVAO);
+        torsoTransform.scale = glm::vec3(torsoScaleX * 1.0f, 1.0f, 1.0f);	//only change scale
+      	torsoTransform.parent = &torsoPivot;	//pivot is the parent
+        DrawCube(transformLoc, world_mat * individualTransformationsToMat4(torsoTransform), cubeVAO);
 
         //Neck
+      	IndividualTransformations neckPivot;
+        neckPivot.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
+        neckPivot.rot_z = glm::radians(45.0f);
+      	neckPivot.parent = &torsoPivot;
+
         IndividualTransformations neckTransform;
         neckTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
-        neckTransform.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
-        neckTransform.rot_z = glm::radians(90.0f);
-        DrawCube(/*glm::mat4(1),*/ transformLoc, model_matrix * individualTransformationsToMat4(neckTransform) * individualTransformationsToMat4(torsoTransform), cubeVAO);
+      	neckTransform.parent = &neckPivot;	//pivot is the parent
+        DrawCube(transformLoc, world_mat * individualTransformationsToMat4(neckTransform), cubeVAO);
 
         //Right Front Lower Arm
 
