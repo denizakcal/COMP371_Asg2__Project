@@ -597,31 +597,33 @@ int main()
         torsoPivot.translation = glm::vec3(0.0f, 0.0f, 0.0f);
         torsoPivot.rot_x = 0.0f;
 
-        float torsoScaleX = 4.0f;
+        float torsoScaleX = 2.5f;
+        float torsoScaleY = 1.0f;
+        float torsoScaleZ = 1.0f;
         IndividualTransformations torsoTransform;
-        torsoTransform.scale = glm::vec3(torsoScaleX * 1.0f, 1.0f, 1.0f);	//only change scale
+        torsoTransform.scale = glm::vec3(torsoScaleX*1.0f, torsoScaleY*1.0f, torsoScaleZ*1.0f);	//only change scale
       	torsoTransform.parent = &torsoPivot;	//pivot is the parent
         DrawCube(transformLoc, world_mat * individualTransformationsToMat4(torsoTransform), cubeVAO);
 
         //Neck
       	IndividualTransformations neckPivot;
-        neckPivot.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
-        neckPivot.rot_z = glm::radians(45.0f);
+        neckPivot.translation = glm::vec3(-2.5f - torsoScaleX/2, torsoScaleY/2, 0.0f);
+        neckPivot.rot_z = glm::radians(-45.0f);
       	neckPivot.parent = &torsoPivot;
 
         IndividualTransformations neckTransform;
-        neckTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+        neckTransform.scale = glm::vec3(0.75f, 0.25f, 0.25f);
       	neckTransform.parent = &neckPivot;	//pivot is the parent
         DrawCube(transformLoc, world_mat * individualTransformationsToMat4(neckTransform), cubeVAO);
 
-      	// Left upper arm (from horse's point of view)
+      	/*// Left upper arm (from horse's point of view)
         IndividualTransformations leftUpperArmPivot;
         leftUpperArmPivot.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
         leftUpperArmPivot.rot_z = glm::radians(45.0f);
       	leftUpperArmPivot.parent = &torsoPivot;
 
       	IndividualTransformations leftUpperArmTransform;
-				leftUpperArmTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+        leftUpperArmTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
       	leftUpperArmTransform.parent = &leftUpperArmPivot;	//pivot is the parent
       	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(leftUpperArmTransform), cubeVAO);
 
@@ -700,7 +702,7 @@ int main()
       	IndividualTransformations rightLowerLegTransform;
         rightLowerLegTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
       	rightLowerLegTransform.parent = &rightLowerLegPivot;	//pivot is the parent
-      	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(rightLowerLegTransform), cubeVAO);
+      	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(rightLowerLegTransform), cubeVAO);*/
 
         // Swap the screen buffers
         glfwSwapBuffers(window);
