@@ -576,17 +576,18 @@ int main()
         //Head
 
         //Torso
+        float torsoScaleX = 4.0f;
         IndividualTransformations torsoTransform;
-        torsoTransform.scale = glm::vec3(5.0f, 1.0f, 1.0f);
-        torsoTransform.translation = glm::vec3(0.1f, 0.0f, 0.0f);
+        torsoTransform.scale = glm::vec3(torsoScaleX * 1.0f, 1.0f, 1.0f);
+        torsoTransform.translation = glm::vec3(0.0f, 0.0f, 0.0f);
         torsoTransform.rot_x = 0.0f;
         DrawCube(/*glm::mat4(1),*/ transformLoc, model_matrix * individualTransformationsToMat4(torsoTransform), cubeVAO);
 
-                //Neck
+        //Neck
         IndividualTransformations neckTransform;
-        neckTransform.scale = glm::vec3(0.5f, 0.5f, 0.5f);
-        neckTransform.translation = glm::vec3(-2.5f, -1.5f, 0.0f);
-        neckTransform.rot_z = glm::radians(-270.0f);
+        neckTransform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+        neckTransform.translation = glm::vec3(-0.5f - torsoScaleX/2, 0.0f, 0.0f);
+        neckTransform.rot_z = glm::radians(90.0f);
         DrawCube(/*glm::mat4(1),*/ transformLoc, model_matrix * individualTransformationsToMat4(neckTransform) * individualTransformationsToMat4(torsoTransform), cubeVAO);
 
         //Right Front Lower Arm
