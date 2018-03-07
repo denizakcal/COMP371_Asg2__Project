@@ -780,7 +780,7 @@ int main()
       	float rightLowerLegScaleZ = rightUpperArmScaleZ;
 
       	float rightLowerLegLocationX = 0.0f;
-      	float rightLowerLegLocationY = -rightUpperArmScaleY/2;
+      	float rightLowerLegLocationY = -rightUpperArmScaleY;
       	float rightLowerLegLocationZ = 0.0f;
 
         IndividualTransformations rightLowerLegPivot;
