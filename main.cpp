@@ -28,8 +28,7 @@ struct IndividualTransformations {
 
   	IndividualTransformations* parent;
 
-  	public: IndividualTransformations()
-    {
+  	public: IndividualTransformations() {
       rot_x = rot_y = rot_z = 0.0f;
       translation = glm::vec3(0.0f);
       scale = glm::vec3(1.0f, 1.0f, 1.0f);
