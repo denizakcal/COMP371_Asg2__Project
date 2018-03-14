@@ -36,6 +36,8 @@ struct IndividualTransformations {
     }
 };
 
+IndividualTransformations torsoPivot;
+
 glm::mat4 individualTransformationsToMat4(IndividualTransformations transformations)
 {
     //start with an identity matrix
@@ -137,6 +139,30 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     else if (key == GLFW_KEY_X && action == GLFW_PRESS) {
 
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    }
+    else if (key == GLFW_KEY_LEFT && action == GLFW_PRESS) {
+
+        torsoPivot.translation.x -= 0.1f;
+    }
+    else if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS) {
+
+        torsoPivot.translation.x += 0.1f;
+    }
+    else if (key == GLFW_KEY_UP && action == GLFW_PRESS) {
+
+        torsoPivot.translation.z -= 0.1f;
+    }
+    else if (key == GLFW_KEY_DOWN && action == GLFW_PRESS) {
+
+        torsoPivot.translation.z += 0.1f;
+    }
+    else if(key == GLFW_KEY_SPACE && action == GLFW_PRESS) {
+
+        int rX = rand() % 100 + 1;
+        int rZ = rand() % 100 + 1;
+
+        torsoPivot.translation.x = rX;
+        torsoPivot.translation.z = rZ;
     }
 }
 
@@ -595,13 +621,15 @@ int main()
         float torsoScaleY = 0.75f;
         float torsoScaleZ = 0.75f;
 
-        float torsoLocationX = 0.0f;
-        float torsoLocationY = 0.0f;
-        float torsoLocationZ = 0.0f;
-      	IndividualTransformations torsoPivot;
+//        float torsoLocationX = 0.0f;
+//        float torsoLocationY = 0.0f;
+//        float torsoLocationZ = 0.0f;
+//      	IndividualTransformations torsoPivot;
       	//torsoPivot.scale = glm::vec3(torsoScaleX * 1.0f, 1.0f, 1.0f);		//don't change the scale of the pivot
-        torsoPivot.translation = glm::vec3(torsoLocationX, torsoLocationY, torsoLocationZ);
-        torsoPivot.rot_x = 0.0f;
+//        torsoPivot.translation = glm::vec3(torsoLocationX, torsoLocationY, torsoLocationZ);
+//        torsoPivot.rot_x = 0.0f;
+
+        torsoPivot.translation.y = 1.0f;
 
         IndividualTransformations torsoTransform;
         torsoTransform.scale = glm::vec3(torsoScaleX, torsoScaleY, torsoScaleZ);	//only change scale
