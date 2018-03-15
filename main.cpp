@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include "stb_image.h"
 
 using namespace std;
 
@@ -147,6 +148,14 @@ glm::mat4 individualTransformationsToMat4(IndividualTransformations transformati
       result = individualTransformationsToMat4(*(transformations.parent)) * result;
 
     return result;
+}
+
+unsigned char* getTexture(std::string fileName) {
+    int width, height, numComponents;
+
+    unsigned char* imageData = stbi_load(fileName.c_str(), &width, &height, &numComponents, 4);
+
+    return imageData;
 }
 
 /*glm::mat4 netTransformation(IndividualTransformations transformations) {
