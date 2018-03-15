@@ -562,6 +562,7 @@ int main()
         glm::vec3(0.05, 0.74, 0.5), // Teal
         glm::vec3(0,-1,0), // normal vector
         glm::vec3(-0.5,-0.5,0.5),
+        glm::vec3(0.05, 0.74, 0.5), // Teal
         glm::vec3(0,-1,0), // normal vector
 
         // Bottom face triangle 2
