@@ -150,7 +150,7 @@ glm::mat4 individualTransformationsToMat4(IndividualTransformations transformati
     return result;
 }
 
-unsigned char* getTexture(std::string fileName) {
+unsigned char* getTextureImageData(std::string fileName) {
     int width, height, numComponents;
 
     unsigned char* imageData = stbi_load(fileName.c_str(), &width, &height, &numComponents, 4);
@@ -256,8 +256,8 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     }
     else if(key == GLFW_KEY_SPACE && action == GLFW_PRESS) {
 
-        int rX = rand() % 100 + 1;
-        int rZ = rand() % 100 + 1;
+        int rX = rand() % 101 - 50;
+        int rZ = rand() % 101 - 50;
 
         torsoPivot.translation.x = rX;
         torsoPivot.translation.z = rZ;
@@ -378,20 +378,20 @@ int main()
         std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
     // Link shaders
-    GLuint shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
+    GLuint shaderProgramID = glCreateProgram();
+    glAttachShader(shaderProgramID, vertexShader);
+    glAttachShader(shaderProgramID, fragmentShader);
+    glLinkProgram(shaderProgramID);
     // Check for linking errors
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+    glGetProgramiv(shaderProgramID, GL_LINK_STATUS, &success);
     if (!success) {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+        glGetProgramInfoLog(shaderProgramID, 512, NULL, infoLog);
         std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
     }
     glDeleteShader(vertexShader); //free up memory
     glDeleteShader(fragmentShader);
 
-    glUseProgram(shaderProgram);
+    glUseProgram(shaderProgramID);
 
     //----------------------------------------------------------------------------------------------------------
 
@@ -644,9 +644,9 @@ int main()
 
     scale = glm::vec3(1.0f);
 
-    GLuint projectionLoc = glGetUniformLocation(shaderProgram, "projection_matrix");
-    GLuint viewMatrixLoc = glGetUniformLocation(shaderProgram, "view_matrix");
-    GLuint transformLoc = glGetUniformLocation(shaderProgram, "model_matrix");
+    GLuint projectionLoc = glGetUniformLocation(shaderProgramID, "projection_matrix");
+    GLuint viewMatrixLoc = glGetUniformLocation(shaderProgramID, "view_matrix");
+    GLuint transformLoc = glGetUniformLocation(shaderProgramID, "model_matrix");
 
     double xpos, ypos;
     glfwGetCursorPos(window, &xpos, &ypos);
