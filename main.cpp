@@ -421,143 +421,179 @@ int main()
     // Inner part of grid
     for(float i = -50; i < 50; i+=1) {
 
-        gridVert.push_back( glm::vec3(i,-0.5,+50) );
-        gridVert.push_back( glm::vec3(i,-0.5,-50) );
+        gridVert.push_back( glm::vec3(i,0.0,+50) );
+        gridVert.push_back( glm::vec3(i,0.0,-50) );
 
-        gridVert.push_back( glm::vec3(-50,-0.5,i) );
-        gridVert.push_back( glm::vec3(+50,-0.5,i) );
+        gridVert.push_back( glm::vec3(-50,0.0,i) );
+        gridVert.push_back( glm::vec3(+50,0.0,i) );
     }
 
     // Outer boundary of grid
-    gridVert.push_back( glm::vec3(-50,-0.5,+50) );
-    gridVert.push_back( glm::vec3(+50,-0.5,+50) );
+    gridVert.push_back( glm::vec3(-50,0.0,+50) );
+    gridVert.push_back( glm::vec3(+50,0.0,+50) );
 
-    gridVert.push_back( glm::vec3(-50,-0.5,-50) );
-    gridVert.push_back( glm::vec3(+50,-0.5,-50) );
+    gridVert.push_back( glm::vec3(-50,0.0,-50) );
+    gridVert.push_back( glm::vec3(+50,0.0,-50) );
 
-    gridVert.push_back( glm::vec3(-50,-0.5,-50) );
-    gridVert.push_back( glm::vec3(-50,-0.5,+50) );
+    gridVert.push_back( glm::vec3(-50,0.0,-50) );
+    gridVert.push_back( glm::vec3(-50,0.0,+50) );
 
-    gridVert.push_back( glm::vec3(+50,-0.5,-50) );
-    gridVert.push_back( glm::vec3(+50,-0.5,+50) );
+    gridVert.push_back( glm::vec3(+50,0.0,-50) );
+    gridVert.push_back( glm::vec3(+50,0.0,+50) );
 
     //Cube
     vector<glm::vec3> vertCube =
     {
         // Front face triangle 1
-        glm::vec3(0.5,-0.5,0.5),
-        glm::vec3(0.05, 0.74, 0.5), // Teal
-        glm::vec3(-0.5,0.5,0.5),
-        glm::vec3(0.05, 0.74, 0.5), // Teal
-        glm::vec3(-0.5,-0.5,0.5),
-        glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0.5,-0.5,0.5), // position
+        glm::vec3(0.05, 0.74, 0.5), // Colour (Teal)
+        glm::vec3(0,0,1), // normal vector
+        glm::vec3(-0.5,0.5,0.5), // position
+        glm::vec3(0.05, 0.74, 0.5), // Colour (Teal)
+        glm::vec3(0,0,1), // normal vector
+        glm::vec3(-0.5,-0.5,0.5), // position
+        glm::vec3(0.05, 0.74, 0.5), // Colour (Teal)
+        glm::vec3(0,0,1), // normal vector
 
         // Front face triangle 2
-        glm::vec3(0.5,-0.5,0.5),
+        glm::vec3(0.5,-0.5,0.5), // position
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,0,1), // normal vector
         glm::vec3(0.5,0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,0,1), // normal vector
         glm::vec3(-0.5,0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,0,1), // normal vector
 
         // Back face triangle 1
         glm::vec3(0.5,-0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,0,-1), // normal vector
         glm::vec3(-0.5,0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,0,-1), // normal vector
         glm::vec3(-0.5,-0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,0,-1), // normal vector
 
         // Back face triangle 2
         glm::vec3(0.5,-0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,0,-1), // normal vector
         glm::vec3(0.5,0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,0,-1), // normal vector
         glm::vec3(-0.5,0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,0,-1), // normal vector
 
         // Left face triangle 1
         glm::vec3(-0.5,-0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(-1,0,0), // normal vector
         glm::vec3(-0.5,0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(-1,0,0), // normal vector
         glm::vec3(-0.5,-0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(-1,0,0), // normal vector
 
         // Left face triangle 2
         glm::vec3(-0.5,-0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(-1,0,0), // normal vector
         glm::vec3(-0.5,0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(-1,0,0), // normal vector
         glm::vec3(-0.5,0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(-1,0,0), // normal vector
 
         // Right face triangle 1
         glm::vec3(0.5,-0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(1,0,0), // normal vector
         glm::vec3(0.5,0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(1,0,0), // normal vector
         glm::vec3(0.5,-0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(1,0,0), // normal vector
 
         // Right face triangle 2
         glm::vec3(0.5,-0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(1,0,0), // normal vector
         glm::vec3(0.5,0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(1,0,0), // normal vector
         glm::vec3(0.5,0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(1,0,0), // normal vector
 
         // Top face triangle 1
         glm::vec3(0.5,0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,1,0), // normal vector
         glm::vec3(-0.5,0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,1,0), // normal vector
         glm::vec3(-0.5,0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,1,0), // normal vector
 
         // Top face triangle 2
         glm::vec3(0.5,0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,1,0), // normal vector
         glm::vec3(0.5,0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,1,0), // normal vector
         glm::vec3(-0.5,0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,1,0), // normal vector
 
         // Bottom face triangle 1
         glm::vec3(0.5,0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,-1,0), // normal vector
         glm::vec3(-0.5,-0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,-1,0), // normal vector
         glm::vec3(-0.5,-0.5,0.5),
+        glm::vec3(0,-1,0), // normal vector
 
         // Bottom face triangle 2
         glm::vec3(0.5,0.5,0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,-1,0), // normal vector
         glm::vec3(0.5,-0.5,-0.5),
         glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,-1,0), // normal vector
         glm::vec3(-0.5,-0.5,-0.5),
-        glm::vec3(0.05, 0.74, 0.5) // Teal
+        glm::vec3(0.05, 0.74, 0.5), // Teal
+        glm::vec3(0,-1,0), // normal vector
     };
 
     //Coordinate Axes
 
-    vector <glm::vec3> axeVert;
+    vector <glm::vec3> axesVert;
     //x-axis
-    axeVert.push_back(glm::vec3(0,-0.5,0));
-    axeVert.push_back(glm::vec3(1.0,0.0,0.0)); //Red
-    axeVert.push_back(glm::vec3(5,-0.5,0));
-    axeVert.push_back(glm::vec3(1.0, 0.0, 0.0)); //Red
+    axesVert.push_back(glm::vec3(0,0.0,0));
+    axesVert.push_back(glm::vec3(1.0,0.0,0.0)); //Red
+    axesVert.push_back(glm::vec3(5,0.0,0));
+    axesVert.push_back(glm::vec3(1.0, 0.0, 0.0)); //Red
     //y-axis
-    axeVert.push_back(glm::vec3(0,-0.5,0));
-    axeVert.push_back(glm::vec3(0.0, 1.0, 0.0)); //Green
-    axeVert.push_back(glm::vec3(0,4.5,0));
-    axeVert.push_back(glm::vec3(0.0, 1.0, 0.0)); //Green
+    axesVert.push_back(glm::vec3(0,0.0,0));
+    axesVert.push_back(glm::vec3(0.0, 1.0, 0.0)); //Green
+    axesVert.push_back(glm::vec3(0,0.0,0));
+    axesVert.push_back(glm::vec3(0.0, 1.0, 0.0)); //Green
     //z-axis
-    axeVert.push_back(glm::vec3(0,-0.5,0));
-    axeVert.push_back(glm::vec3(0.0, 0.0, 1.0)); //Blue
-    axeVert.push_back(glm::vec3(0, -0.5, 5));
-    axeVert.push_back(glm::vec3(0.0, 0.0, 1.0)); //Blue
+    axesVert.push_back(glm::vec3(0,0.0,0));
+    axesVert.push_back(glm::vec3(0.0, 0.0, 1.0)); //Blue
+    axesVert.push_back(glm::vec3(0, 0.0, 5));
+    axesVert.push_back(glm::vec3(0.0, 0.0, 1.0)); //Blue
 
 
 
@@ -605,9 +641,11 @@ int main()
 
     glBufferData(GL_ARRAY_BUFFER, vertCube.size() * sizeof(glm::vec3), &vertCube.front(), GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertCube), (GLvoid*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3*sizeof(glm::vec3), (GLvoid*)0);
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(vertCube), (GLvoid*)(3*sizeof(GLfloat)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3*sizeof(glm::vec3), (GLvoid*)(3*sizeof(GLfloat)));
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 3*sizeof(glm::vec3), (GLvoid*)(6*sizeof(GLfloat)));
 
 
     //glBufferData(GL_ELEMENT_ARRAY_BUFFER, ind.size() * sizeof(glm::uvec3), &ind.front(), GL_STATIC_DRAW);
@@ -640,12 +678,12 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, axeVBO);
 
 
-    glBufferData(GL_ARRAY_BUFFER, axeVert.size() * sizeof(glm::vec3), &axeVert.front(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, axesVert.size() * sizeof(glm::vec3), &axesVert.front(), GL_STATIC_DRAW);
     //glBufferData(GL_ARRAY_BUFFER, sizeof(axeColor) * sizeof(GLfloat), &axeColor[0], GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(axeVert), (GLvoid*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(axesVert), (GLvoid*)0);
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(axeVert), (void*)12);
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(axesVert), (void*)12);
 
 
     glBindBuffer(GL_ARRAY_BUFFER, 0); // Note that this is allowed, the call to glVertexAttribPointer registered VBO as the currently bound vertex buffer object so afterwards we can safely unbind
@@ -737,7 +775,7 @@ int main()
         float torsoScaleY = 0.75f;
         float torsoScaleZ = 0.75f;
 
-        torsoPivot.translation.y = 1.0f;
+        torsoPivot.translation.y = 1.375f;
         torsoPivot.parent = &userInputtedTransformations;
 
         IndividualTransformations torsoTransform;
@@ -935,11 +973,16 @@ int main()
       	rightLowerLegTransform.parent = &rightLowerLegPivot;	//pivot is the parent
       	DrawCube(transformLoc, world_mat * individualTransformationsToMat4(rightLowerLegTransform), cubeVAO);
 
+//      	std::cout << torsoPivot.translation.y << std::endl;
+//        std::cout << leftUpperArmPivot.translation.y << std::endl;
+//        std::cout << leftLowerArmPivot.translation.y << std::endl;
+
         // Swap the screen buffers
         glfwSwapBuffers(window);
     }
 
     // Terminate GLFW, clearing any resources allocated by GLFW.
+
     glfwTerminate();
     return 0;
 }
