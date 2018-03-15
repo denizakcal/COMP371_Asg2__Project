@@ -25,9 +25,9 @@ float torsoScaleX = 1.5f;
 float torsoScaleY = 0.75f;
 float torsoScaleZ = 0.75f;
 
-float torsoLocationX = 0.0f;
-float torsoLocationY = 0.0f;
-float torsoLocationZ = 0.0f;
+//float torsoLocationX = 0.0f;
+//float torsoLocationY = 1.0f;
+//float torsoLocationZ = 0.0f;
 
 float neckScaleX = 0.75f;
 float neckScaleY = 0.25f;
@@ -126,7 +126,9 @@ struct IndividualTransformations {
     }
 };
 
+IndividualTransformations horsePivot;
 IndividualTransformations torsoPivot;
+IndividualTransformations leftUpperArmPivot;
 
 glm::mat4 individualTransformationsToMat4(IndividualTransformations transformations)
 {
@@ -240,27 +242,48 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     }
     else if (key == GLFW_KEY_LEFT && action == GLFW_PRESS) {
 
-        torsoPivot.translation.x -= 0.1f;
+        horsePivot.translation.x -= 0.1f;
     }
     else if (key == GLFW_KEY_RIGHT && action == GLFW_PRESS) {
 
-        torsoPivot.translation.x += 0.1f;
+        horsePivot.translation.x += 0.1f;
     }
     else if (key == GLFW_KEY_UP && action == GLFW_PRESS) {
 
-        torsoPivot.translation.z -= 0.1f;
+        horsePivot.translation.z -= 0.1f;
     }
     else if (key == GLFW_KEY_DOWN && action == GLFW_PRESS) {
 
-        torsoPivot.translation.z += 0.1f;
+        horsePivot.translation.z += 0.1f;
     }
     else if(key == GLFW_KEY_SPACE && action == GLFW_PRESS) {
 
-        int rX = rand() % 101 - 50;
-        int rZ = rand() % 101 - 50;
+        int randomX = rand() % 101 - 50;
+        int randomZ = rand() % 101 - 50;
 
-        torsoPivot.translation.x = rX;
-        torsoPivot.translation.z = rZ;
+        horsePivot.translation.x = randomX;
+        horsePivot.translation.z = randomZ;
+    }
+    else if(key == GLFW_KEY_R && action == GLFW_PRESS) {
+
+        // TODO complete a run or walk cycle
+    }
+    else if(key == GLFW_KEY_U && action == GLFW_PRESS) {
+
+        float commonScalingFactor = 1.05;
+
+//        torsoLocationY = (torsoPivot.scale.y*commonScalingFactor-torsoPivot.scale.y) + 2*(leftUpperArmPivot.scale.y*commonScalingFactor-leftUpperArmPivot.scale.y);
+//        torsoLocationY = torsoPivot.translation.y * commonScalingFactor;
+
+        horsePivot.scale *= commonScalingFactor;
+    }
+    else if(key == GLFW_KEY_J && action == GLFW_PRESS) {
+
+        float commonScalingFactor = 1.05;
+
+//        torsoLocationY = torsoPivot.translation.y / commonScalingFactor;
+
+        horsePivot.scale /= commonScalingFactor;
     }
 }
 
@@ -720,6 +743,7 @@ int main()
         float torsoScaleZ = 0.75f;
 
         torsoPivot.translation.y = 1.0f;
+        torsoPivot.parent = &horsePivot;
 
         IndividualTransformations torsoTransform;
         torsoTransform.scale = glm::vec3(torsoScaleX, torsoScaleY, torsoScaleZ);	//only change scale
@@ -773,7 +797,7 @@ int main()
 //      	float leftUpperArmLocationY = -torsoScaleY/2-leftUpperArmScaleY/2;
 //      	float leftUpperArmLocationZ = torsoScaleZ/2 - leftUpperArmScaleZ/2;
 
-        IndividualTransformations leftUpperArmPivot;
+//        IndividualTransformations leftUpperArmPivot;
         leftUpperArmPivot.translation = glm::vec3(leftUpperArmLocationX, leftUpperArmLocationY, leftUpperArmLocationZ);
         leftUpperArmPivot.rot_z = glm::radians(0.0f);
       	leftUpperArmPivot.parent = &torsoPivot;
