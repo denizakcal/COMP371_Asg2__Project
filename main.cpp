@@ -13,7 +13,7 @@
 using namespace std;
 
 const GLuint WINDOW_WIDTH = 800, WINDOW_HEIGHT = 800;
-const GLfloat CAMERA_MOVEMENT_STEP = 0.08;
+const GLfloat CAMERA_MOVEMENT_STEP = 0.4;
 
 GLfloat y_rotation;
 GLfloat x_rotation;
