@@ -17,7 +17,7 @@ const GLfloat CAMERA_MOVEMENT_STEP = 0.4;
 
 GLfloat y_rotation;
 GLfloat x_rotation;
-glm::vec3 camera_position;
+glm::vec3 cameraPosition;
 glm::vec3 scale;
 
 // Horse transformation variables
@@ -194,27 +194,27 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
     }
     else if (key == GLFW_KEY_Q && action == GLFW_PRESS) {
 
-        camera_position.z += CAMERA_MOVEMENT_STEP;
+        cameraPosition.z += CAMERA_MOVEMENT_STEP;
     }
     else if (key == GLFW_KEY_E && action == GLFW_PRESS) {
 
-        camera_position.z -= CAMERA_MOVEMENT_STEP;
+        cameraPosition.z -= CAMERA_MOVEMENT_STEP;
     }
     else if (key == GLFW_KEY_D && action == GLFW_PRESS) {
 
-        camera_position.x -= CAMERA_MOVEMENT_STEP;
+        cameraPosition.x -= CAMERA_MOVEMENT_STEP;
     }
     else if(key == GLFW_KEY_A && action == GLFW_PRESS) {
 
-        camera_position.x += CAMERA_MOVEMENT_STEP;
+        cameraPosition.x += CAMERA_MOVEMENT_STEP;
     }
     else if(key == GLFW_KEY_W && action == GLFW_PRESS) {
 
-        camera_position.y -= CAMERA_MOVEMENT_STEP;
+        cameraPosition.y -= CAMERA_MOVEMENT_STEP;
     }
     else if (key == GLFW_KEY_S && action == GLFW_PRESS) {
 
-        camera_position.y += CAMERA_MOVEMENT_STEP;
+        cameraPosition.y += CAMERA_MOVEMENT_STEP;
     }
     else if (key == GLFW_KEY_R && action == GLFW_PRESS) {
 
@@ -704,6 +704,7 @@ int main()
     GLuint projectionLoc = glGetUniformLocation(shaderProgramID, "projection_matrix");
     GLuint viewMatrixLoc = glGetUniformLocation(shaderProgramID, "view_matrix");
     GLuint transformLoc = glGetUniformLocation(shaderProgramID, "model_matrix");
+    GLuint cameraPositionLoc = glGetUniformLocation(shaderProgramID, "cameraPosition");
 
     double xpos, ypos;
     glfwGetCursorPos(window, &xpos, &ypos);
@@ -733,7 +734,7 @@ int main()
 
         glm::mat4 view_matrix;
         view_matrix = glm::translate(view_matrix, glm::vec3(0.0f, 0.0f, -3.0f));
-        view_matrix = translate(view_matrix, camera_position);
+        view_matrix = translate(view_matrix, cameraPosition);
         //view_matrix = glm::lookAt(glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
         glm::mat4 model_matrix;
@@ -747,6 +748,7 @@ int main()
         glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(model_matrix));
         glUniformMatrix4fv(viewMatrixLoc, 1, GL_FALSE, glm::value_ptr(view_matrix));
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection_matrix));
+        glUniform1fv(cameraPositionLoc, 1, glm::value_ptr(cameraPosition));
 
 
         //glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, (void*)0);
